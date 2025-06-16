@@ -1,8 +1,15 @@
 const employees = [
   {
     id: 1,
-    username: "employee1",
+    firstname: "Aarav",
     password: "123",
+    email: "e@e.com",
+    taskCount: {
+      active: 1,
+      newTask: 1,
+      completedTask: 1,
+      failed: 1
+    },
     tasks: [
       {
         active: true,
@@ -38,8 +45,15 @@ const employees = [
   },
   {
     id: 2,
-    username: "employee2",
+    firstname: "Priya",
     password: "123",
+    email: "e2@e.com",
+    taskCount: {
+      active: 1,
+      newTask: 1,
+      completedTask: 2,
+      failed: 1
+    },
     tasks: [
       {
         active: true,
@@ -85,8 +99,15 @@ const employees = [
   },
   {
     id: 3,
-    username: "employee3",
+    firstname: "Rahul",
     password: "123",
+    email: "employee3@example.com",
+    taskCount: {
+      active: 1,
+      newTask: 0,
+      completedTask: 1,
+      failed: 1
+    },
     tasks: [
       {
         active: true,
@@ -122,8 +143,15 @@ const employees = [
   },
   {
     id: 4,
-    username: "employee4",
+    firstname: "Sneha",
     password: "123",
+    email: "employee4@example.com",
+    taskCount: {
+      active: 1,
+      newTask: 1,
+      completedTask: 1,
+      failed: 1
+    },
     tasks: [
       {
         active: true,
@@ -159,8 +187,15 @@ const employees = [
   },
   {
     id: 5,
-    username: "employee5",
+    firstname: "Vikram",
     password: "123",
+    email: "employee5@example.com",
+    taskCount: {
+      active: 1,
+      newTask: 1,
+      completedTask: 1,
+      failed: 1
+    },
     tasks: [
       {
         active: true,
@@ -208,11 +243,12 @@ const employees = [
 
 const admin = [
   {
-    id: 100,username: "admin",
-    password: "123"
+    id: 100,
+    firstname: "Admin",
+    password: "123",
+    email: "admin@example.com"
   }
 ];
-
 
 
 export const setLocalStorage=()=>{

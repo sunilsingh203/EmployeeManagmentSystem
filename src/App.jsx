@@ -7,23 +7,39 @@ import { AuthContext } from './context/AuthProvider'
 
 const  App = () => {
  
-  const [User, setUser] = useState('')
+  const [User, setUser] = useState(null)
+  const [logedInUserData, setloggedInUserData] = useState(null)
+  const authData = useContext(AuthContext)
 
-  // useEffect (() => {
-  //   // setLocalStorage()
-  //   getLocalStorage()
+
+
+  // useEffect(() => {
+    
+  //     if(authData){
+  //       const loggedInUser = localStorage.getItem('loggedInUser')
+  //       if(loggedInUser){
+  //         setUser(loggedInUser.role)
+  //       }
+  //     }
   
-  // },)
-
-  const data = useContext(AuthContext)
-  console.log(data)
-  const HandleLogin=(username,password)=>{
+   
+  // }, [authData])
+  
+    const HandleLogin=(username,password)=>{
     if(username=='admin@me.com'&& password=='123'){
       setUser('admin')
+      localStorage.setItem('loggedInUser',JSON.stringify({role:'admin'}))
     }
-    else if(username=='user@me.com'&& password=='123'){
-      setUser('User')
-      
+    else if(authData){
+
+      const employee = authData.employees.find((e)=>username == e.email && password == e.password)
+
+      if(employee){
+        setUser('User')
+        setloggedInUserData(employee)
+        localStorage.setItem('loggedInUser',JSON.stringify({role:'employee'}))
+      }
+    
     }
     else{
       alert('invalid Credentails')
@@ -34,7 +50,7 @@ const  App = () => {
   return (
     <>
     {!User? <Login HandleLogin = {HandleLogin}/>: ''}
-    {User == 'admin' ? <AdminDashboard/>:<EmployeeDashboard/>}
+    {User == 'admin' ? <AdminDashboard/>:(User != null ? <EmployeeDashboard data ={logedInUserData}/>: null)}
     </>
   )
 }
