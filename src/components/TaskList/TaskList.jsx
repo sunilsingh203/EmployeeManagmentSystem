@@ -1,24 +1,32 @@
 import React from 'react'
+import AcceptTask from './AcceptTask'
+import CompleteTask from './CompleteTask'
+import NewTask from './NewTask'
+import FailedTask from './FailedTask'
 
-const TaskList = () => {
+const TaskList = (data) => {
+  
   return (
     <div
   id="tasklist"
   className="mt-5 h-[55%] overflow-x-auto flex items-center gap-4 px-4"
 >
-  {/* Task Card */}
-  <div className="flex-shrink-0 h-full w-[300px] p-5 bg-red-400 rounded-lg shadow-md">
-    <div className="flex justify-between items-center">
-      <h3 className="bg-red-600 text-sm px-3 py-1 rounded text-white">High</h3>
-      <h4 className="text-sm text-gray-100">20 Feb 2024</h4>
-    </div>
-    <h2 className="mt-5 text-2xl font-semibold text-white">
-      Make a YouTube video
-    </h2>
-    <p className="text-sm mt-2 text-gray-100">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-    </p>
-  </div>
+  {data.data.map((elem,index)=>{
+    if(elem.active){
+      return <AcceptTask key={index}/>
+    }
+    if(elem.newTask){
+      return <NewTask key={index}/>
+    }
+    if(elem.completedTask){
+      return <CompleteTask key={index}/>
+
+    }
+    if(elem.failed)
+    {
+      return <FailedTask key={index}/>
+    }
+  })}
   
 
 </div>
